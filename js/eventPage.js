@@ -29,11 +29,15 @@ function fetchTBdata(urlList){
             $.ajax({
                 url:item.apiUrl+search,
                 type:item.apiMethod||'GET',
+                headers: {
+                    "Referer":"we.taobao.com"
+                },
                 success:function (data) {
                     var success_flag =item.succFlag.split(":")
-                    console.log('success_flag',success_flag,data)
+                    console.log('success_flag',success_flag,data);
+                    console.log('llllllll',data[success_flag[0]],success_flag[1])
                     //todo 这里不是所有都是在content有flag，flag应该固定在根目录
-                    if(data[success_flag[0]]==success_flag[1]) {
+                    if(data[success_flag[0]].toString()==success_flag[1]) {
                         console.log(1,data)
                         var param = {};
                         //解析出每一个要传递到后台的参数
